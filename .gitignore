@@ -1,0 +1,8 @@
+.env
+venv/
+__pycache__/
+*.pyc
+captures/
+motion_watch.log
+.motion_watch.pid
+.claude/
