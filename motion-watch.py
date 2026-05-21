@@ -20,16 +20,20 @@ import datetime
 import smtplib
 import json
 import shutil
+import collections
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
 from pathlib import Path
+import cv2
+import imutils
 
 from dotenv import load_dotenv
 load_dotenv()
 
+
 # ---------------------------------------------------------------------------
-# Configuration — edit these before running
+# Configuration
 # ---------------------------------------------------------------------------
 
 # Minimum contour area (pixels²) that counts as motion.
@@ -126,10 +130,6 @@ def send_alert_email(snapshot_path: Path | None = None):
 # ---------------------------------------------------------------------------
 
 def run_detector():
-    import cv2
-    import imutils
-    import collections
-
     # Clear all output from the previous run on start.
     if OUTPUT_DIR.exists():
         shutil.rmtree(OUTPUT_DIR)

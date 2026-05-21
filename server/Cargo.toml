@@ -1,0 +1,9 @@
+[package]
+name = "server"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+dotenvy = "0.15.7"
+sqlx = { version = "0.8.6", features = ["postgres", "runtime-tokio", "uuid", "time", "macros"] }
+tokio = { version = "1.52.3", features = ["full"] }
