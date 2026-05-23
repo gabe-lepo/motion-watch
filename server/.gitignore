@@ -27,3 +27,7 @@ rustc-ice-*.txt
 
 # Script connecting to local docker container
 connect.sh
+
+# Other
+.env
+.envrc
