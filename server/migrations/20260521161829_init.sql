@@ -1,9 +1,10 @@
 CREATE TABLE devices (
   id            UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  hw_identifier TEXT NOT NULL UNIQUE,
   name          TEXT NOT NULL,
   location      TEXT,
-  last_seen     TIMESTAMPTZ,
-  created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  last_seen     BIGINT NOT NULL DEFAULT (EXTRACT(EPOCH FROM NOW()) * 1000)::BIGINT,
+  created_at    BIGINT NOT NULL DEFAULT (EXTRACT(EPOCH FROM NOW()) * 1000)::BIGINT
 );
 
 CREATE TABLE events (
@@ -11,5 +12,5 @@ CREATE TABLE events (
   device_id     UUID NOT NULL REFERENCES devices(id),
   type          TEXT NOT NULL,
   snapshot_path TEXT,
-  created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  created_at    BIGINT NOT NULL DEFAULT (EXTRACT(EPOCH FROM NOW()) * 1000)::BIGINT
 );

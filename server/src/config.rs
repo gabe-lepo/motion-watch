@@ -5,7 +5,7 @@ use std::env;
 #[derive(Clone)]
 pub struct AppState {
     pub config: AppConfig,
-    pub db_pool: Option<Pool<Postgres>>,
+    pub db_pool: Pool<Postgres>,
 }
 
 #[derive(Deserialize, Debug, Clone)]

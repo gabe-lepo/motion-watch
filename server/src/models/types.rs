@@ -1,30 +1,19 @@
 use serde::{Deserialize, Serialize};
-use time::OffsetDateTime;
 use uuid::Uuid;
 
 #[derive(Serialize)]
 pub struct Device {
     pub id: Uuid,
+    pub hw_identifier: String,
     pub name: String,
     pub location: Option<String>,
-    pub last_seen: Option<OffsetDateTime>,
-    pub created_at: OffsetDateTime,
+    pub last_seen: i64,
+    pub created_at: i64,
 }
 
 #[derive(Deserialize)]
 pub struct DeviceRegisterParams {
+    pub hw_identifier: String,
     pub name: String,
-    pub location: Option<String>,
-}
-
-#[derive(Serialize)]
-pub struct DeviceRegisterResponse {
-    pub name: String,
-    pub location: Option<String>,
-}
-
-#[derive(Deserialize)]
-pub struct DeviceUpdateParams {
-    pub name: Option<String>,
     pub location: Option<String>,
 }
