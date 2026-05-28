@@ -36,18 +36,8 @@ pub async fn register(
                 Ok(device) => (StatusCode::CREATED, Json(device)).into_response(),
                 Err(e) => {
                     eprintln!("Error registering device: {e}");
-                    let status = match e {
-                        sqlx::Error::Database(db_err) => {
-                            // FIXME: Need to handle sqlx -> status codes elsewhere
-                            // Theres too much match nesting going on directly in handlers
-                            match db_err.code().as_deref() {
-                                _ => 
-                            }
-                        },
-                        _ => StatusCode::INTERNAL_SERVER_ERROR,
-                    }
                     (
-                        status,
+                        StatusCode::INTERNAL_SERVER_ERROR,
                         Json(serde_json::json!({"error": e.to_string()})),
                     )
                         .into_response()

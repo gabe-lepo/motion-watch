@@ -22,9 +22,9 @@ impl AppConfig {
             .expect("Failed loading port from env var")
             .parse::<u16>()
             .expect("Failed parsing port env var");
-        Self {
-            database_url: env::var("DATABASE_URL").expect("Failed loading database_url env var"),
-            port,
-        }
+        let database_url = env::var("DATABASE_URL").expect("Failed loading database_url env var");
+        println!("DEBUG: {database_url}");
+
+        Self { database_url, port }
     }
 }
